@@ -1,0 +1,207 @@
+<h1>Ajouter marche</h1>
+
+<div class="card">
+  <div class="card-head" style="background-color: deepskyblue">
+    Nouveau marche
+  </div>
+  <div class="card-body">
+    <div class="container text-right">
+      <div class="row">
+        <div class="col-3">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
+              <option selected [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+            </select>
+            <!-- <select class="form-select" aria-label="Default select example">
+              <option selected value="0"> </option>
+              <option  value="1">Niveau 1 : Connectivités directes</option>
+              <option value="2">Niveau 2 : Connectivité autoroutièr Nador–Guercif sur104 km</option>
+              <option value="3">Niveau 3 : Connectivités retenues par la Banque Mondiale</option>
+              <option value="4">Autres</option>
+            </select> -->
+          </div>
+
+
+
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Projet : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeProjets($event)">
+              <option selected [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
+            </select>
+            <!-- <select class="form-select" aria-label="Default select example">
+              <option selected value="0"> </option>
+              <option  value="1">Projet 01 </option>
+              <option value="2">Projet 02</option>
+              <option value="3">Projet 03</option>
+              <option value="4">Projet 04</option>
+            </select> -->
+          </div>
+
+        </div>
+
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Lot : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeLots($event)">
+              <option selected [value]="ele.id" *ngFor="let ele of lots">{{ele.intitule}}</option>
+            </select>
+            <!-- <select class="form-select" aria-label="Default select example">
+              <option selected value="0"> </option>
+              <option  value="1">Lot 01 </option>
+              <option value="2">Lot 02</option>
+              <option value="3">Lot 03</option>
+              <option value="4">Lot 04</option>
+            </select> -->
+          </div>
+
+        </div>
+
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">N° marche : </label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.numero_marche" >
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">date de démarrage  : </label>
+            <input type="date" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.dateOverturePlit">
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Délai initial (Mois)  : </label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.delai" >
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Montant marche  : </label>
+            <input type="number" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.montant">
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Objet</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="marche.objet"></textarea>
+        </div>
+      </div>
+
+      </div>
+
+      <br>
+          <h2>Prix du marché : </h2>
+
+      <div class="row">
+        <div class="col-4">
+          <div class="mb-3">
+            <label   class="form-label">N° prix : </label>
+            <input  type="number" min="0" class="form-control" [(ngModel)]="prix.numprix"
+             >
+        </div>
+      </div>
+
+      <div class="col-8">
+        <div class="mb-3">
+          <label   class="form-label">Prix : </label>
+          <input  type="text" class="form-control" [(ngModel)]="prix.prix"
+           >
+      </div>
+    </div>
+      </div>
+      <div class="row">
+
+
+    <div class="col-3">
+      <div class="mb-3">
+        <label   class="form-label">Qté : </label>
+        <input  type="number" min="0" class="form-control" [(ngModel)]="prix.qte"
+          (change)="calculateMontant()">
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="mb-3">
+      <label   class="form-label">PU(HT) : </label>
+      <input  type="number" min="0" class="form-control" [(ngModel)]="prix.pu"
+      (change)="calculateMontant()">
+  </div>
+</div>
+
+
+<div class="col-3">
+  <div class="mb-3">
+    <label   class="form-label">Unité : </label>
+    <!-- <input  type="number" min="0" class="form-control" [(ngModel)]="prix.unite" -->
+     <select class="form-select" aria-label="Default select example" [(ngModel)]="prix.unite">
+              <option selected value="U">Unitaire</option>
+              <option value="F">Forfait</option>
+              <option value="A">Autres</option>
+            </select>
+
+</div>
+</div>
+
+<div class="col-3">
+  <div class="mb-3">
+    <label   class="form-label">Montant(TTC) : </label>
+    <input disabled="true" type="number" class="form-control" [(ngModel)]="prix.montant"
+     >
+</div>
+</div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-4">
+        <button type="button" class="btn btn-success" (click)="addPrix()">Ajouter Prix </button>
+        </div>
+        </div>
+
+
+<br>
+              <div class="row">
+                <div class="col-12">
+
+                  <table id="customers">
+                    <tr>
+
+                      <th>N° prix</th>
+                      <th>prix</th>
+                      <th>unite</th>
+                      <th>qte</th>
+                      <th>pu</th>
+                      <th>montant</th>
+
+                    </tr>
+
+                    <tr *ngFor="let item of marche.prixes;let i = index" >
+                      <td>{{item.numprix}}</td>
+                      <td>{{item.prix}}</td>
+                      <td>{{item.unite}}</td>
+                      <td>{{item.qte}}</td>
+                      <td>{{item.pu}}</td>
+                      <td>{{item.montant}}</td>
+
+
+                    </tr>
+
+                            </table>
+
+                  </div>
+                  </div>
+
+<br>
+                  <button type="button" class="btn btn-success" (click)="saveMarche()">Ajouter  marché </button>
+
+    </div>
+  </div>

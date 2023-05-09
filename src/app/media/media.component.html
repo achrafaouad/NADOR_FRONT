@@ -1,0 +1,126 @@
+<h1>Fiche datail</h1>
+
+
+<div class="card">
+  <div class="card-head" style="background-color: deepskyblue">
+    Détail marché
+  </div>
+  <div class="card-body">
+    <div class="container text-right">
+
+      <div class="row">
+        <div class="col-3">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
+              <option selected [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+            </select>
+            <!-- <select class="form-select" aria-label="Default select example">
+              <option selected value="0"> </option>
+              <option  value="1">Niveau 1 : Connectivités directes</option>
+              <option value="2">Niveau 2 : Connectivité autoroutièr Nador–Guercif sur104 km</option>
+              <option value="3">Niveau 3 : Connectivités retenues par la Banque Mondiale</option>
+              <option value="4">Autres</option>
+            </select> -->
+          </div>
+
+
+
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Projet : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeProjets($event)">
+              <option selected [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
+            </select>
+            <!-- <select class="form-select" aria-label="Default select example">
+              <option selected value="0"> </option>
+              <option  value="1">Projet 01 </option>
+              <option value="2">Projet 02</option>
+              <option value="3">Projet 03</option>
+              <option value="4">Projet 04</option>
+            </select> -->
+          </div>
+
+        </div>
+
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Lot : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeMarches($event)">
+              <option selected [value]="ele.id" *ngFor="let ele of marches">{{ele.objet}}</option>
+            </select>
+            <!-- <select class="form-select" aria-label="Default select example">
+              <option selected value="0"> </option>
+              <option  value="1">Lot 01 </option>
+              <option value="2">Lot 02</option>
+              <option value="3">Lot 03</option>
+              <option value="4">Lot 04</option>
+            </select> -->
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+<div class="row">
+  <div class="col-6">
+    <table id="customers">
+      <tr> <td>N° marché</td><td>MA01/NDR/2023</td></tr>
+      <tr> <td>Longueur</td><td>23 km</td></tr>
+      <tr> <td>Titulaire</td><td>Entreprise 01</td></tr>
+      <tr> <td>Montant</td><td>45.3 MDH</td></tr>
+      <tr> <td>Date demarrage</td><td>17/01/2022</td></tr>
+      <tr> <td>Fin contractuelle</td><td>17/01/2023</td></tr>
+      <tr> <td>Fin reel</td><td>17/01/2023</td></tr>
+      <tr> <td>Delai</td><td>12 Mois</td></tr>
+    </table>
+
+  </div>
+  <div class="col-6">
+    <div class="card cardmiddle">
+      <div id="mapWrap" style="width: 100%; height: 40.5vh">
+
+        <div id="mapPrev" class="mapPrev" style="width: 100%; height: 40.5vh">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-6">
+
+    <div id="chart">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [dataLabels]="chartOptions.dataLabels"
+        [grid]="chartOptions.grid"
+        [stroke]="chartOptions.stroke"
+        [title]="chartOptions.title"
+      ></apx-chart>
+    </div>
+
+  </div>
+
+  <div class="col-6">
+    <div id="chart">
+      <apx-chart
+        [series]="chartOptions2.series"
+        [chart]="chartOptions2.chart"
+        [xaxis]="chartOptions2.xaxis"
+        [stroke]="chartOptions2.stroke"
+        [markers]="chartOptions2.markers"
+        [fill]="chartOptions2.fill"
+        [title]="chartOptions2.title"
+      ></apx-chart>
+    </div>
+  </div>
+</div>
+
+      </div>
+      </div>
+</div>

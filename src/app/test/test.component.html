@@ -1,0 +1,88 @@
+<div class="card">
+  <div class="card-head">Lorem ipsum - dashboard</div>
+<div class="card-body">
+        <p>test works!</p>
+
+
+        <div>
+            calculator
+        </div>
+
+        <div>
+            <input type="number" [(ngModel)]="a" placeholder="a" class="form-control">
+        </div>
+        <div>
+            <input type="number" [(ngModel)]="b" placeholder="b">
+        </div>
+
+        <button (click)="sum()"> submit</button>
+        <div>{{a}}</div>
+        <div>{{b}}</div>
+        <div>result = {{c}}</div>
+
+
+        <hr>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-3">test</div>
+            <div class="col-sm-3">tyui</div>
+            <div class="col-sm-3">test3</div>
+            <div class="col-sm-3">test4</div>
+          </div>
+        </div>
+
+
+</div>
+</div>
+<div class="card" *ngFor="let ele of list"  >
+    <div class="card-head">
+        {{ele.name}}
+        {{ele.id}}
+        {{ele.adress}}
+    </div>
+    <div class="card-body">
+       name: <input type="text" [(ngModel)]="ele.name" placeholder="b" >
+       id:  <input type="number" [(ngModel)]="ele.id" placeholder="b">
+       adress: <input type="text" [(ngModel)]="ele.adress" placeholder="b">
+    </div>
+    <button (click)="submit(ele)">save </button>
+</div>
+
+
+
+<div class="card">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+        <!--- Note that these columns can be defined in any order.
+              The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="position">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="weight">
+          <th mat-header-cell *matHeaderCellDef> Weight </th>
+          <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="symbol">
+          <th mat-header-cell *matHeaderCellDef> Symbol </th>
+          <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+</div>
+
+

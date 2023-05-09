@@ -1,0 +1,187 @@
+<h1>Borderau du marché</h1>
+
+<div class="card">
+  <div class="card-head" style="background-color: deepskyblue">
+    Bordereau marche
+  </div>
+  <div class="card-body">
+    <div class="container text-right">
+
+      <div class="row">
+        <div class="col-4">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
+              <option selected value="" >Selectionner un Niveau</option>
+              <option   [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+            </select>
+          </div>
+
+
+
+        </div>
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Projet : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeProjets($event)">
+              <option selected value="" >Selectionner un projet</option>
+              <option   [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="col">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">N° marche : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeMarches($event)">
+              <option selected value="" >Selectionner un marché</option>
+              <option   [value]="ele.id_marche" *ngFor="let ele of marches">{{ele.objet}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+<br>
+<br>
+
+      <div class="row">
+        <div class="col-4">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Date Situation : </label>
+            <input type="date" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="date_Situation">
+          </div>
+        </div>
+        <div class="col-8">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Observation : </label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="observation"></textarea>
+          </div>
+        </div>
+        </div>
+      </div>
+
+          <h1>Liste des prix  : </h1>
+
+
+          <table id="customers" *ngIf="!selectedMarche">
+            <tr>
+
+              <th>N° Prix</th>
+              <th>Prix</th>
+              <th>Quantité</th>
+              <th>Prix_Unitaire</th>
+              <th>Montant</th>
+              <th>Date demarrage</th>
+              <th>Quantité Prevu</th>
+              <th>Quantité réalisé</th>
+              <th>Montant PGT</th>
+              <th>Montant réalisé</th>
+              <th>Avancement PGT</th>
+              <th>Avancament réalisé</th>
+            </tr>
+
+            <tr>
+              <td colspan="12" style="text-align:center"> /!\ Pas de marché n'été selectionné </td>
+            </tr>
+
+            </table>
+
+
+          <table id="customers" *ngIf="selectedMarche && isemptySituation">
+            <tr>
+
+              <th>N° Prix</th>
+              <th>Prix</th>
+              <th>Quantité</th>
+              <th>Prix_Unitaire</th>
+              <th>Montant</th>
+              <th>Date demarrage</th>
+              <th>Quantité Prevu</th>
+              <th>Quantité réalisé</th>
+              <th>Montant PGT</th>
+              <th>Montant réalisé</th>
+              <th>Avancement PGT</th>
+              <th>Avancament réalisé</th>
+            </tr>
+
+            <tr *ngFor="let ele of selectedMarche.situations[0].situationdetail" >
+              <td>{{ele.prix.numprix}}</td>
+              <td> {{ele.prix.prix}}</td>
+              <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.qte" /></td>
+              <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.pu" /></td>
+              <td>{{ele.prix.montant}}</td>
+              <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
+              <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
+              <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
+              <td>  {{ele.montapgt}}</td>
+              <td>  {{ ele.montreal}}</td>
+              <td> {{ele.avancpgt}}</td>
+              <td>  {{ele.avanreal}}</td>
+
+
+            </tr>
+
+                    </table>
+
+
+                    <table id="customers" *ngIf="selectedMarche && !isemptySituation">
+                      <tr>
+
+                        <th>N° Prix</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Prix_Unitaire</th>
+                        <th>Montant</th>
+                        <th>Date demarrage</th>
+                        <th>Quantité Prevu</th>
+                        <th>Quantité réalisé</th>
+                        <th>Montant PGT</th>
+                        <th>Montant réalisé</th>
+                        <th>Avancement PGT</th>
+                        <th>Avancament réalisé</th>
+                      </tr>
+
+                      <tr *ngFor="let ele of lastSituation.situationdetail" >
+                        <td>{{ele.prix.numprix}}</td>
+                        <td> {{ele.prix.prix}}</td>
+                        <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.qte" /></td>
+                        <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.pu" /></td>
+                        <td>{{ele.prix.montant}}</td>
+                        <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
+                        <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
+                        <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                      </tr>
+
+                              </table>
+
+
+
+
+                    <br>
+<div class="row">
+  <div class="col-1">
+    <button type="button" class="btn btn-success"  >Calculer</button>
+
+  </div>
+  <div class="col-3">
+
+    <button type="button" class="btn btn-warning"  (click)="saveSituation()" >Valider</button>
+  </div>
+</div>
+        <!-- </div> -->
+        </div>
+
+
+
+
+
+
+</div>

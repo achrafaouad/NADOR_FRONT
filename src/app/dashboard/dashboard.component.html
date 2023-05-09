@@ -1,0 +1,353 @@
+<h1>Nouveau Projet</h1>
+
+<div class="card">
+    <div class="card-head" style="background-color: deepskyblue;">Nouveau Projet</div>
+    <div class="card-body">
+
+    <!--
+      <div>
+        <div>Current Date: {{ currentDate }}</div>
+        <div>Current TIme {{ currentTime }}</div>
+        <div>Current somme {{ sum }}</div>
+      </div>
+    -->
+
+      <div class="container text-right">
+        <div class="row">
+          <div class="col-12">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Objet</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="objet"></textarea>
+          </div>
+        </div>
+          <div class="col">
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Niveau</label>
+              <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
+                <option selected [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+                <!-- <option selected value="1">Niveau 1 : Connectivités directes</option> -->
+                <!-- <option value="2">Niveau 2 : Connectivité autoroutièr Nador–Guercif sur104 km</option>
+                <option value="3">Niveau 3 : Connectivités retenues par la Banque Mondiale</option>
+                <option value="4">Autres</option> -->
+              </select>
+          </div>
+
+
+        </div>
+          <div class="col">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Année</label>
+              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="année" [(ngModel)]="Annee">
+          </div>
+          </div>
+          <div class="col">
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Foncier</label>
+              <select class="form-select" aria-label="Default select example" (change)="changeFoncier($event)">
+                <option selected [value]="ele.id" *ngFor="let ele of foncier">{{ele.description}}</option>
+                <!-- <option selected value="1">Nécessité d'expropriation</option>
+                <option value="2">Nécessité d'autorisation</option>
+                <option value="3">Autres</option>
+                <option value="4">Sans objet</option> -->
+              </select>
+          </div>
+
+          </div>
+
+          <div class="col">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">mot clé </label>
+              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="mot clé" [(ngModel)]="mot_cle">
+          </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-8">
+
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Observation</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="observation_project"></textarea>
+          </div>
+
+          </div>
+          <div class="col-4"> </div>
+        </div>
+      </div>
+
+      <div>
+        <mat-accordion>
+
+          <mat-expansion-panel  [expanded]="true"
+                               >
+            <mat-expansion-panel-header style="background-color: deepskyblue;">
+              <mat-panel-title>
+                Province bénificiaires :
+              </mat-panel-title>
+              <mat-panel-description>
+
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <br>
+
+      <!--  -->
+
+        <div class="row">
+          <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Provinces</label>
+            <select class="form-select" aria-label="Default select example" (change)="changeprovince($event)" >
+
+              <option selected [value]="ele.id_province" *ngFor="let ele of provinces">{{ele.name}}</option>
+
+              <!-- <option selected value="Nador">Nador</option>
+              <option value="Taourirt">Taourirt</option>
+              <option value="Guercif">Guercif</option>
+              <option value="Taza">Taza</option> -->
+            </select>
+
+
+        </div>
+      </div>
+      <div class="col-1">
+        <div class="mb-3">
+        <button type="button" class="btn btn-success" (click)="addSection()">Ajouter</button>
+      </div>
+    </div>
+
+    <div class="col-1">
+      <div class="mb-3">
+
+      <button type="button" class="btn btn-warning" (click)="proviceList.delete(province)">Supprimer</button>
+    </div>
+  </div>
+
+    <div class="col-6"></div>
+
+    </div>
+    <div class="row">
+      <div class="col-12">
+      <div class="mb-3">
+
+        <table id="customers">
+<tr>
+  <th>Sections province</th>
+</tr>
+<tr>
+  <td></td>
+</tr>
+<tr *ngFor="let item of sections" >
+  <td>{{item.geom}}</td>
+</tr>
+
+        </table>
+
+
+
+        <div class="card cardmiddle">
+          <div style="background-color:#212529;color:white;font-size:13px;text-align:center;padding:'10px 15px';font-weight:bold">
+             Ajout des sites par carte
+          </div>
+
+          <div class="card-body">
+              <div id="mapWrap" style="width: 100%; height: 67.5vh">
+
+                  <div
+                    id="mapPrev"
+                    class="mapPrev"
+                    style="width: 100%; height: 67.5vh"
+                  >
+                  <div class="draw" id="draw" style="margin-top:60px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px;"(click)="changto('Point')"
+                      ><i class="bi bi-cursor-fill"></i></button>
+                  </div>
+                  <div class="draw" id="draw" style="margin-top:90px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px;" (click)="changto('LineString')" title="line"
+                      ><i class="bi bi-signpost-split-fill"></i></button>
+                  </div>
+                  <div class="draw" id="draw" style="margin-top:120px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('Circle')"
+                      ><i class="bi bi-alexa"></i></button>
+                  </div>
+                  <div class="draw" id="draw" style="margin-top:150px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('Polygon')"
+                      ><i class="bi bi-hexagon"></i></button>
+                  </div>
+                  <div class="draw" id="draw" style="margin-top:180px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="draw.removeLastPoint();"
+                      ><i class="bi bi-arrow-counterclockwise"></i></button>
+                  </div>
+                  <div class="draw" id="draw" style="margin-top:210px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('None')"
+                      ><i class="bi bi-x"></i></button>
+                  </div>
+                  <div class="draw" id="draw" style="margin-top:240px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="clear()"
+                      ><i class="bi bi-x"></i></button>
+                  </div>
+                  <div class="draw" id="draw" style="margin-top:270px">
+                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="showInfo=!showInfo"
+                      ><i class="bi bi-info-square-fill"></i></button>
+                  </div>
+
+                </div>
+                </div>
+          </div>
+
+        </div>
+
+
+      </div>
+        </div>
+        </div>
+
+      <!--  -->
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+
+      <div>
+        <mat-accordion>
+
+          <mat-expansion-panel  [expanded]="true"
+                               >
+            <mat-expansion-panel-header style="background-color: deepskyblue;">
+              <mat-panel-title>
+                Ajouter des lots :
+              </mat-panel-title>
+              <mat-panel-description>
+
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <br>
+
+            <div class="container text-right">
+              <div class="row">
+                <div class="col-6">
+                  <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Intitulé</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                    [(ngModel)]="newLot.intitule"
+                     ></textarea>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">Observation : </label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                  [(ngModel)]="newLot.observation"
+                   ></textarea>
+              </div>
+            </div>
+
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">PKD : </label>
+                  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="pkd"
+                  [(ngModel)]="newLot.pkd"
+                  >
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">PKF : </label>
+                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="pkf"
+                [(ngModel)]="newLot.pkf"
+                >
+            </div>
+          </div>
+
+          <div class="col-4">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Montant : </label>
+              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="montant"
+              [(ngModel)]="newLot.montant"
+               >
+          </div>
+        </div>
+
+
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <button type="button" class="btn btn-success" (click)="addlot()">Ajouter lot </button>
+              </div>
+              </div>
+<br>
+              <div class="row">
+                <div class="col-12">
+
+                  <table mat-table #table [dataSource]="myDataArray" class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="intitulelot">
+                    <mat-header-cell *matHeaderCellDef>intitulelot</mat-header-cell>
+                    <mat-cell *matCellDef="let lot"><div> {{lot.intitule}} </div></mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="observationlot">
+                    <mat-header-cell *matHeaderCellDef>observationlot</mat-header-cell>
+                    <mat-cell *matCellDef="let lot"><div> {{lot.observation}} </div></mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="pkdlot">
+                      <mat-header-cell *matHeaderCellDef>pkdlot</mat-header-cell>
+                      <mat-cell *matCellDef="let lot"><div> {{lot.pkd}} </div></mat-cell>
+                      </ng-container>
+
+                      <ng-container matColumnDef="pkflot">
+                        <mat-header-cell *matHeaderCellDef>pkflot</mat-header-cell>
+                        <mat-cell *matCellDef="let lot"><div> {{lot.pkf}} </div></mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="montantlot">
+                          <mat-header-cell *matHeaderCellDef>montantlot</mat-header-cell>
+                          <mat-cell *matCellDef="let lot"><div> {{lot.montant}} </div></mat-cell>
+                          </ng-container>
+
+                          <ng-container matColumnDef="actions">
+                            <mat-header-cell *matHeaderCellDef>Actions </mat-header-cell>
+                            <mat-cell *matCellDef="let lot">
+                            <!-- <button mat-button color="primary" (click)="openDialog(this.lot)">Modifier</button> | -->
+                            <button type="button" class="btn btn-success" (click)="delete(this.lot)">Supprimer</button>
+                            </mat-cell>
+                            </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+                    <mat-row *matRowDef="let dataSource; columns: columnsToDisplay;"></mat-row>
+
+                    </table>
+
+                  </div>
+                  </div>
+
+
+          </div>
+
+          <button type="button" class="btn btn-success" (click)="saveProject()">Ajouter Projet</button>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </div>
+    </div>
+</div>
+
+
+
+<div id="popup" class="ol-popup">
+  <a href="javascript: void(0);" id="popup-closer" class="ol-popup-closer"></a>
+  <div id="popup-content"></div>
+</div>
+
+
+<router-outlet></router-outlet>
+
