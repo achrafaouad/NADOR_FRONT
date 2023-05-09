@@ -40,7 +40,7 @@ export class ServiceService {
 
 
 
-   private apiUrl = 'http://localhost:8015';
+   private apiUrl = 'http://localhost:8016';
 
 
   constructor(private httpClient: HttpClient) {
@@ -93,6 +93,22 @@ export class ServiceService {
   public saveSituation(data:any):Observable<any>{
     return this.httpClient.post<any>(`${this.apiUrl}/rest/saveSituation`,data)
   }
+
+  // public getEvolutionAvancement(data:any):Observable<any>{
+  //   return this.httpClient.post<any>(`${this.apiUrl}/rest/getEvolutionAvancement`,data)
+  // }
+
+  public getEvolutionAvancement(marcheId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/rest/getEvolutionAvancement/${marcheId}`);
+  }
+  
+  public getRadar(marcheId: number):Observable<any>{
+    return this.httpClient.get<any>(`${this.apiUrl}/rest/getRadar/${marcheId}`)
+  }
+
+  // public getRadar(data:any):Observable<any>{
+  //   return this.httpClient.post<any>(`${this.apiUrl}/rest/getRadar`,data)
+  // }
 
 
 

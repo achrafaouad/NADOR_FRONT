@@ -116,10 +116,11 @@
               <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
               <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
               <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
-              <td>  {{ele.montapgt}}</td>
-              <td>  {{ ele.montreal}}</td>
-              <td> {{ele.avancpgt}}</td>
-              <td>  {{ele.avanreal}}</td>
+              <td>  {{ele.prix.pu *ele.qteprecu}} </td>
+              <td>  {{ele.prix.pu *ele.qtereacu}} </td>
+              <td>  {{100*ele.qteprecu/ele.prix.qte}}%</td>
+              <td>  {{100* ele.qtereacu/ele.prix.qte}}%</td>
+              
 
 
             </tr>
@@ -153,11 +154,10 @@
                         <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
                         <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
                         <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-
+                        <td>  {{ele.prix.pu *ele.qteprecu}} </td>
+                        <td>  {{ele.prix.pu *ele.qtereacu}} </td>
+                        <td>  {{100*ele.qteprecu/ele.prix.qte}}%</td>
+                        <td>  {{100* ele.qtereacu/ele.prix.qte}}%</td>
                       </tr>
 
                               </table>
