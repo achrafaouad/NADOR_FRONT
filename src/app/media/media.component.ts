@@ -225,13 +225,12 @@ export class MediaComponent implements OnInit {
 
 
 
-    this.vector.addEventListener("addfeature", (event)=> {
-
-
-      console.log("feef")
-      this.mapPrevLine.getView().fit(this.vector.getSource().getExtent(), (this.mapPrevLine.getSize()));
-    });
-
+    this.source.on('addfeature', () =>{
+      this.mapPrevLine.getView().fit(
+          this.source.getExtent(),
+          { duration: 1000, size: this.mapPrevLine.getSize(), maxZoom: 8 }
+      );
+  });
 
 
     this.getnewvqlues()
