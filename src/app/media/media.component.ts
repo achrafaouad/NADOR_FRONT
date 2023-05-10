@@ -239,6 +239,9 @@ export class MediaComponent implements OnInit {
 
 
   changeNiveaux(event){
+
+    this.selectedMarche = null;
+    this.selectedProjet = null;
     const id = event.target.value;
     this.selectedNiveau = this.niveau.find(c => c.id === Number(id)) || null;
     this.projets = this.selectedNiveau.projets//this.getBooksByWriter(id)
@@ -247,6 +250,7 @@ export class MediaComponent implements OnInit {
   }
 
   changeProjets(event){
+    this.selectedMarche = null;
     this.source.clear()
     const id = event.target.value;
     this.selectedProjet= this.projets.find(c => c.id === Number(id)) || null;
