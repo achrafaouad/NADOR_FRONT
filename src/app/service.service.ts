@@ -37,15 +37,14 @@ export class ResourceAssignment {
 })
 export class ServiceService {
 
+   //private apiUrl = 'http://localhost:80';
 
 
-
-   private apiUrl = 'http://localhost:8016';
+   private apiUrl = 'http://localhost:8011';
 
 
   constructor(private httpClient: HttpClient) {
   }
-
 
   public getProvinecs():Observable<any>{
     return this.httpClient.get<any>(`${this.apiUrl}/rest/getProvinecs`)
@@ -101,7 +100,7 @@ export class ServiceService {
   public getEvolutionAvancement(marcheId: number): Observable<any> {
     return this.httpClient.get<any>(`${this.apiUrl}/rest/getEvolutionAvancement/${marcheId}`);
   }
-  
+
   public getRadar(marcheId: number):Observable<any>{
     return this.httpClient.get<any>(`${this.apiUrl}/rest/getRadar/${marcheId}`)
   }

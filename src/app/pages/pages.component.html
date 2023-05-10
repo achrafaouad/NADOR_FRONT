@@ -85,7 +85,7 @@
             </tr>
 
             <tr>
-              <td colspan="12" style="text-align:center"> /!\ Pas de marché n'été selectionné </td>
+              <td colspan="12" style="text-align:center"> aucun marché selectionné </td>
             </tr>
 
             </table>
@@ -117,11 +117,13 @@
               <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
               <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
               <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
-              <td>  {{ele.prix.pu *ele.qteprecu}} </td>
-              <td>  {{ele.prix.pu *ele.qtereacu}} </td>
-              <td>  {{100*ele.qteprecu/ele.prix.qte}}%</td>
-              <td>  {{100* ele.qtereacu/ele.prix.qte}}%</td>
-              
+
+              <td>  {{ele.prix.pu *ele.qteprecu | number : '1.0-2'}} </td>
+              <td>  {{ele.prix.pu *ele.qtereacu | number : '1.0-2'}} </td>
+              <td>  {{100*ele.qteprecu/ele.prix.qte | number : '1.0-2'}}%</td>
+              <td>  {{100* ele.qtereacu/ele.prix.qte | number : '1.0-2'}}%</td>
+
+
 
 
             </tr>
@@ -155,10 +157,12 @@
                         <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
                         <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
                         <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
-                        <td>  {{ele.prix.pu *ele.qteprecu}} </td>
-                        <td>  {{ele.prix.pu *ele.qtereacu}} </td>
-                        <td>  {{100*ele.qteprecu/ele.prix.qte}}%</td>
-                        <td>  {{100* ele.qtereacu/ele.prix.qte}}%</td>
+
+                        <td>  {{ele.prix.pu *ele.qteprecu | number : '1.0-2'}} </td>
+                        <td>  {{ele.prix.pu *ele.qtereacu | number : '1.0-2'}} </td>
+                        <td>  {{100*ele.qteprecu/ele.prix.qte | number : '1.0-2'}}%</td>
+                        <td>  {{100* ele.qtereacu/ele.prix.qte | number : '1.0-2'}}%</td>
+
                       </tr>
 
                               </table>

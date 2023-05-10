@@ -12,6 +12,8 @@ export interface Marche {
     dateOverturePlit:Date;
     n_appel_offre:string;
     delai:number;
+    estimationao:number;
+    montantengage:number;
     prixes:any;
   }
 
@@ -55,6 +57,8 @@ export class StatisticsComponent implements OnInit {
     dateOverturePlit:null,
     n_appel_offre:null,
     delai:null,
+    estimationao:null,
+    montantengage:null,
     prixes:[]
 
   }

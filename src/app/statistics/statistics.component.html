@@ -13,7 +13,8 @@
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
             <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
-              <option selected [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+              <option selected value="0">selectionner un niveau</option>
+              <option  [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
             </select>
             <!-- <select class="form-select" aria-label="Default select example">
               <option selected value="0"> </option>
@@ -31,7 +32,8 @@
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Projet : </label>
             <select class="form-select" aria-label="Default select example" (change)="changeProjets($event)">
-              <option selected [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
+              <option selected value="0">selectionner un projet</option>
+              <option  [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
             </select>
             <!-- <select class="form-select" aria-label="Default select example">
               <option selected value="0"> </option>
@@ -48,7 +50,8 @@
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Lot : </label>
             <select class="form-select" aria-label="Default select example" (change)="changeLots($event)">
-              <option selected [value]="ele.id" *ngFor="let ele of lots">{{ele.intitule}}</option>
+              <option selected value="0">selectionner un lot</option>
+              <option  [value]="ele.id" *ngFor="let ele of lots">{{ele.intitule}}</option>
             </select>
             <!-- <select class="form-select" aria-label="Default select example">
               <option selected value="0"> </option>
@@ -61,41 +64,86 @@
 
         </div>
 
+
+      </div>
+
+      <br>
+
+          <h2>Appel d'offre : </h2>
+      <div class="row">
+
         <div class="col-3">
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">N° marche : </label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.numero_marche" >
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">date de démarrage  : </label>
-            <input type="date" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.dateOverturePlit">
+            <label for="exampleFormControlTextarea1" class="form-label">N° AO : </label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.n_appel_offre" >
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-3">
           <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Délai initial (Mois)  : </label>
+            <label for="exampleFormControlTextarea1" class="form-label">Date OP : </label>
+            <input type="Date" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.dateOverturePlit" >
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Estimation : </label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.estimationao" >
+          </div>
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Délai : </label>
             <input type="number" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.delai" >
           </div>
         </div>
-
-        <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Montant marche  : </label>
-            <input type="number" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.montant">
-          </div>
-        </div>
-
         <div class="col-12">
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Objet</label>
             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="marche.objet"></textarea>
         </div>
       </div>
+      </div>
+      <br>
+      <h2>Marché : </h2>
+
+      <div class="row">
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">N° marché : </label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.numero_marche" >
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Titulaire  : </label>
+            <input type="text" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.titulaire">
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">OSC  : </label>
+            <input type="date" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.os_commencement">
+          </div>
+        </div>
+
+
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Montant Initial TTC (dhs)  : </label>
+            <input type="number" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.montant">
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Engagement initial(dhs)  : </label>
+            <input type="number" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="marche.montantengage">
+          </div>
+        </div>
+
+
 
       </div>
 
