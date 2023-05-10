@@ -39,7 +39,9 @@ export class ServiceService {
 
    //private apiUrl = 'http://localhost:80';
 
+
    private apiUrl = 'http://localhost:8011';
+
 
   constructor(private httpClient: HttpClient) {
   }

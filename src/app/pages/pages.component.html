@@ -1,8 +1,9 @@
 <h1>Borderau du marché</h1>
 
 <div class="card">
-  <div class="card-head" style="background-color: deepskyblue">
-    Bordereau marche
+  <div class="card-header" class="seven" >
+    <br>
+    <h1>Borderau du marché</h1> 
   </div>
   <div class="card-body">
     <div class="container text-right">
@@ -116,10 +117,12 @@
               <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
               <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
               <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
+
               <td>  {{ele.prix.pu *ele.qteprecu | number : '1.0-2'}} </td>
               <td>  {{ele.prix.pu *ele.qtereacu | number : '1.0-2'}} </td>
               <td>  {{100*ele.qteprecu/ele.prix.qte | number : '1.0-2'}}%</td>
               <td>  {{100* ele.qtereacu/ele.prix.qte | number : '1.0-2'}}%</td>
+
 
 
 
@@ -154,10 +157,12 @@
                         <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
                         <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
                         <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
+
                         <td>  {{ele.prix.pu *ele.qteprecu | number : '1.0-2'}} </td>
                         <td>  {{ele.prix.pu *ele.qtereacu | number : '1.0-2'}} </td>
                         <td>  {{100*ele.qteprecu/ele.prix.qte | number : '1.0-2'}}%</td>
                         <td>  {{100* ele.qtereacu/ele.prix.qte | number : '1.0-2'}}%</td>
+
                       </tr>
 
                               </table>

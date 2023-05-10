@@ -2,9 +2,11 @@
 
 
 <div class="card">
-  <div class="card-head" style="background-color: deepskyblue">
-    Détail marché
+  <div class="card-header" class="seven" >
+    <br>
+    <h1>Détail marché</h1> 
   </div>
+  
   <div class="card-body">
     <div class="container text-right">
 
@@ -51,9 +53,11 @@
           <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Marché : </label>
 
+
             <select class="form-select" aria-label="Default select example" (change)="changeMarches($event)">
               <option selected value="0">selectionner </option>
               <option  [value]="ele.id_marche" *ngFor="let ele of marches">{{ele.objet}}</option>
+
             </select>
             <!-- <select class="form-select" aria-label="Default select example">
               <option selected value="0"> </option>
