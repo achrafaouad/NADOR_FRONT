@@ -73,6 +73,8 @@ export class MediaComponent implements OnInit {
  @ViewChild("chart") chart!: ChartComponent;
  public chartOptions: Partial<ChartOptions>;
  public chartOptions2: Partial<ChartOptions2>;
+  resultEvolution: any;
+  resultRadar: any;
 
 
  constructor(private service:ServiceService) {
@@ -224,7 +226,6 @@ export class MediaComponent implements OnInit {
     });
 
 
-
     this.source.on('addfeature', () =>{
       this.mapPrevLine.getView().fit(
           this.source.getExtent(),
@@ -233,7 +234,7 @@ export class MediaComponent implements OnInit {
   });
 
 
-    this.getnewvqlues()
+    // this.getnewvqlues()
   }
 
 
@@ -271,27 +272,125 @@ export class MediaComponent implements OnInit {
 
   changeMarches(event){
     const id = event.target.value;
-    //this.selectedLot= this.lots.find(c => c.id === Number(id)) || null;
-    //this.lots = this.selectedProjet.lots
-    console.log(this.marches)
+  
+    this.selectedMarche = this.marches.find(c => c.id_marche === Number(id)) || null;
+    
+   console.log(this.selectedMarche)
+
+    this.service.getEvolutionAvancement(id).subscribe(
+      res=>{
+        console.log(res)
+
+        this.resultEvolution = res
+       this.getnewvqlues();
+      },
+      err=>{
+        console.log(err);
+      }
+    
+    )
+
+    this.service.getRadar(id).subscribe(
+      res=>{
+        console.log(res)
+        this.resultRadar = res
+        this.updateRadio()
+      },
+      err=>{
+        console.log(err);
+      }
+    
+    )
+
   }
 
 
 
   getnewvqlues(){
-    const values= [
-      {
-        name: "Avancement reel1",
-        data: [10, 41, 35, 98, 484, 62, 69, 91, 45]
-      },
-      {
-       name: "Avancement PGT1",
-       data: [5, 33, 60, 30, 49, 62, 50, 70, 10]
-     }
-    ]
 
-    this.chartOptions.series=[... values]
+    this.chartOptions = {
+      series: [
+        {
+          name: "Avancement reel",
+          data: this.resultEvolution.avReel
+        },
+        {
+         name: "Avancement PGT",
+         data: this.resultEvolution.avPgt
+       }
+      ],
+      chart: {
+        height: 350,
+        type: "line",
+        zoom: {
+          enabled: false
+        }
+      },
+      dataLabels: {
+        enabled: false
+      },
+      stroke: {
+        curve: "straight"
+      },
+      title: {
+        text: "Evolution de l'avancement ",
+        align: "left"
+      },
+      grid: {
+        row: {
+          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5
+        }
+      },
+      xaxis: {
+        categories: this.resultEvolution.dates
+      }
+    };
   }
+
+
+  updateRadio(){
+    this.chartOptions2 = {
+      series: [
+        {
+          name: "Avancament réalisé",
+          data: this.resultRadar.avReel
+        },
+        {
+          name: "Avancement PGT",
+          data:  this.resultRadar.avPgt
+        }
+        
+      ],
+      chart: {
+        height: 350,
+        type: "radar",
+        dropShadow: {
+          enabled: true,
+          blur: 1,
+          left: 1,
+          top: 1
+        }
+      },
+      title: {
+        text: "Detail par poste"
+      },
+      stroke: {
+        width: 0
+      },
+      fill: {
+        opacity: 0.4
+      },
+      markers: {
+        size: 0
+      },
+      xaxis: {
+        categories: this.resultRadar.prix
+      }
+    };
+  }
+
+   
 
   }
 

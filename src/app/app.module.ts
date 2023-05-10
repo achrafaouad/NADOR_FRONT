@@ -18,6 +18,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { TimeService } from "./time.service"
+
 @NgModule({
   declarations: [
     AppComponent,
