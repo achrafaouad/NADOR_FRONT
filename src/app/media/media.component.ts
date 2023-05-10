@@ -258,12 +258,10 @@ export class MediaComponent implements OnInit {
 
     this.service.getGeomProjet(this.selectedProjet).subscribe(
       res=>{
-
         for(let ele of res){
           this.source.addFeatures(this.format.readFeatures(ele))
         }
-
-
+        
       },
       err=>{
         console.log(err)
