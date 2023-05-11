@@ -163,7 +163,7 @@ this.service.getNiveau().subscribe(
 
 
 
-        this.selectedLot.marche=this.marche
+        this.selectedLot.marches.push(this.marche)
 
         this.service.saveMarchetoLot(this.selectedLot).subscribe(
           res=>{

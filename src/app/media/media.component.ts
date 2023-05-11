@@ -1,7 +1,7 @@
 import { style } from '@angular/animations';
 import { Marche } from './../statistics/statistics.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
-
+import CircleStyle from 'ol/style/Circle';
 import { View } from 'ol';
 import TileLayer from 'ol/layer/Tile';
 import FullScreen from 'ol/control/FullScreen';
@@ -10,7 +10,7 @@ import ScaleLine from 'ol/control/ScaleLine';
 import XYZ from 'ol/source/XYZ';
 import Map from "ol/Map";
 import GeoJSON from "ol/format/GeoJSON";
-
+import Text from 'ol/style/Text';
 import {
   ChartComponent,
   ApexAxisChartSeries,
@@ -29,6 +29,7 @@ import VectorLayer from 'ol/layer/Vector';
 import Style from 'ol/style/Style';
 import Fill from 'ol/style/Fill';
 import Stroke from 'ol/style/Stroke';
+import { LineStyle } from '../extra/LineStyle';
 
 
 
@@ -75,10 +76,28 @@ export class MediaComponent implements OnInit {
  public chartOptions2: Partial<ChartOptions2>;
   resultEvolution: any;
   resultRadar: any;
-
+  lines = new LineStyle(
+    "Normal",
+    "center",
+    "middle",
+    "0",
+    "Arial",
+    "Bold",
+    "Point",
+    "0.7853981633974483",
+    true,
+    "12px",
+    "10",
+    "3px",
+    "4px",
+    "black",
+    "white",
+    "4",
+    "38400"
+  );
 
  constructor(private service:ServiceService) {
-
+  
   this.service.getNiveau().subscribe(
     res=>{
       console.log(res)
@@ -184,19 +203,108 @@ export class MediaComponent implements OnInit {
    };
  }
 
+ pointStyle = (feature,resolution)=>  new Style({
+  image: new CircleStyle({
+    radius: 5,
+    fill: new Fill({ color: 'green' }),
+    stroke: new Stroke({ color: 'white', width: 2 }),
+  }),
+  text:new Text({
+    scale:[1.3,1.3],
+    textAlign:  'center',
+  textBaseline: <string>this.lines.baseline,
+  font: <string>this.lines.font,
+  text: (0.002362464157453313<resolution)?'': feature.get("intitule"),
+  fill: new Fill({ color: "blue" }),
+  stroke: new Stroke({ color: "white", width: 3 }),
+  offsetX: 0,
+  offsetY: -15,
+  placement: "point",
+  maxAngle: 45,
+  overflow: this.lines.overflow,
+  rotation: <any>this.lines.rotation,
+  
+  
+  })
+});
+
+lineStringStyle = (feature,resolution)=>  new Style({
+  stroke: new Stroke({
+    color: 'blue',
+    width: 2,
+  }),
+  text:new Text({
+    scale:[1.3,1.3],
+    textAlign:  'center',
+  textBaseline: <string>this.lines.baseline,
+  font: <string>this.lines.font,
+  text: (0.002362464157453313<resolution)?'': feature.get("intitule"),
+  fill: new Fill({ color: "blue" }),
+  stroke: new Stroke({ color: "white", width: 3 }),
+  offsetX: 0,
+  offsetY: -15,
+  placement: "point",
+  maxAngle: 45,
+  overflow: this.lines.overflow,
+  rotation: <any>this.lines.rotation,
+  
+  
+  })
+});
+
+polygonStyle = (feature,resolution)=> new Style({
+  stroke: new Stroke({
+    color: 'red',
+    width: 2,
+  }),
+  fill: new Fill({
+    color: 'rgba(255, 0, 0, 0.1)',
+  }),
+  text:new Text({
+    scale:[1.3,1.3],
+    textAlign:  'center',
+  textBaseline: <string>this.lines.baseline,
+  font: <string>this.lines.font,
+  text: (0.002362464157453313<resolution)?'': feature.get("intitule"),
+  fill: new Fill({ color: "blue" }),
+  stroke: new Stroke({ color: "white", width: 3 }),
+  offsetX: 0,
+  offsetY: -15,
+  placement: "point",
+  maxAngle: 45,
+  overflow: this.lines.overflow,
+  rotation: <any>this.lines.rotation,
+  
+  
+  })
+});
+
+defaultStyle = new Style({
+  fill: new Fill({ color: 'gray' }),
+  stroke: new Stroke({ color: 'black', width: 1 }),
+});
+
+
+
 
  source = new VectorSource({wrapX: false});
 
-  vector = new VectorLayer({
-   source: this.source,
-   style:new Style({
+ vector = new VectorLayer({
+  source: this.source,
+  style:  (feature,resolution)=> {
+    const geometryType = feature.getGeometry().getType();
 
-    stroke: new Stroke({
-      color: 'green',
-      width: 5,
-    })}
-  )
- });
+    if (geometryType === 'Point') {
+      return this.pointStyle(feature,resolution);
+    } else if (geometryType === 'LineString') {
+      return this.lineStringStyle(feature,resolution);
+    } else if (geometryType === 'Polygon') {
+      return this.polygonStyle(feature,resolution);
+    }
+
+    return this.defaultStyle;
+  },
+});
 
  format:GeoJSON = new GeoJSON()
 
@@ -254,14 +362,34 @@ export class MediaComponent implements OnInit {
     this.source.clear()
     const id = event.target.value;
     this.selectedProjet= this.projets.find(c => c.id === Number(id)) || null;
-    this.marches = this.selectedProjet.lots.map(l => l.marche).filter(marche => marche !== null);
+    this.marches = this.selectedProjet.lots.flatMap(l => l.marches).filter(marche => marche !== null);
 
     this.service.getGeomProjet(this.selectedProjet).subscribe(
       res=>{
-        for(let ele of res){
-          this.source.addFeatures(this.format.readFeatures(ele))
+        const geom = [];
+        if(res!==null){
+
+          for(let ele of res){
+            geom.push(
+              {
+                
+              "type": "Feature",
+              "properties": JSON.parse(ele).properties,
+                  "geometry": JSON.parse(JSON.parse(ele).geometry)
+                }
+            )
+          }
+        }
+       
+                
+        if(res!==null){
+          for(let ele of geom){
+
+            this.source.addFeatures(this.format.readFeatures(ele)
+              )          }
         }
         
+
       },
       err=>{
         console.log(err)

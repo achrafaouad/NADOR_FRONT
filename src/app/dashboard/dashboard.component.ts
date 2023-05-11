@@ -23,6 +23,7 @@ export interface lot {
   pkd:number;
   pkf:number;
   montant:number;
+  sections:any
   }
 
 
@@ -61,7 +62,7 @@ export class DashboardComponent implements OnInit {
 
 public USER_DATA: lot[] = []
 
-public newLot = {intitule: "", observation: "" , pkd : 0,pkf : 0, montant : 0 };
+public newLot = {intitule: "", observation: "" , pkd : 0,pkf : 0, montant : 0 ,sections:[]};
   value: any;
   draw: any;
   source = new VectorSource({wrapX: false});
@@ -274,7 +275,7 @@ this.service.getProvinecs().subscribe(
 
 
   addSection(){
-    this.sections.push({
+    this.newLot.sections.push({
       id_section:null,
       geom:this.last_feature,
       province:this.selectedProvince
@@ -287,10 +288,11 @@ this.service.getProvinecs().subscribe(
 
   addlot(){
 
-const newUsersArray = this.USER_DATA;
-newUsersArray.push(this.newLot);
-this.myDataArray = [...newUsersArray];
-this.newLot = {intitule: "", observation: "" , pkd : 0,pkf : 0, montant : 0 };
+    const newUsersArray = this.USER_DATA;
+    newUsersArray.push(this.newLot);
+    this.myDataArray = [...newUsersArray];
+    this.newLot = {intitule: "", observation: "" , pkd : 0,pkf : 0, montant : 0, sections:[] };
+    this.clear()
 
 }
 

@@ -81,143 +81,10 @@
       </div>
 
       <div>
-        <mat-accordion>
+        <mat-accordion   >
 
           <mat-expansion-panel  [expanded]="true"
-                               >
-            <mat-expansion-panel-header class="custom-header">
-              <mat-panel-title>
-                Province bénificiaires :
-              </mat-panel-title>
-              <mat-panel-description>
-
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <br>
-
-      <!--  -->
-
-        <div class="row">
-          <div class="col-4">
-          <div class="mb-3">
-            <label for="exampleFormControlTextarea1" class="form-label">Provinces</label>
-            <select class="form-select" aria-label="Default select example" (change)="changeprovince($event)" >
-
-              <option selected [value]="ele.id_province" *ngFor="let ele of provinces">{{ele.name}}</option>
-
-              <!-- <option selected value="Nador">Nador</option>
-              <option value="Taourirt">Taourirt</option>
-              <option value="Guercif">Guercif</option>
-              <option value="Taza">Taza</option> -->
-            </select>
-
-
-        </div>
-      </div>
-      <div class="col-1">
-        <div class="mb-3">
-        <button type="button" class="btn btn-success" (click)="addSection()">Ajouter</button>
-      </div>
-    </div>
-
-    <div class="col-1">
-      <div class="mb-3">
-
-      <button type="button" class="btn btn-warning" (click)="proviceList.delete(province)">Supprimer</button>
-    </div>
-  </div>
-
-    <div class="col-6"></div>
-
-    </div>
-    <div class="row">
-      <div class="col-12">
-      <div class="mb-3">
-
-        <table id="customers">
-<tr>
-  <th>Sections province</th>
-</tr>
-<tr>
-  <td></td>
-</tr>
-<tr *ngFor="let item of sections" >
-  <td>{{item.geom}}</td>
-</tr>
-
-        </table>
-
-
-
-        <div class="card cardmiddle">
-          <div style="background-color:#b4bdcd;color:black;font-size:13px;text-align:center;padding:'10px 15px';font-weight:bold">
-             Ajout des sites par carte
-          </div>
-
-          <div class="card-body">
-              <div id="mapWrap" style="width: 100%; height: 67.5vh">
-
-                  <div
-                    id="mapPrev"
-                    class="mapPrev"
-                    style="width: 100%; height: 67.5vh"
-                  >
-                  <div class="draw" id="draw" style="margin-top:60px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px;"(click)="changto('Point')"
-                      ><i class="bi bi-cursor-fill"></i></button>
-                  </div>
-                  <div class="draw" id="draw" style="margin-top:90px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px;" (click)="changto('LineString')" title="line"
-                      ><i class="bi bi-signpost-split-fill"></i></button>
-                  </div>
-                  <div class="draw" id="draw" style="margin-top:120px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('Circle')"
-                      ><i class="bi bi-alexa"></i></button>
-                  </div>
-                  <div class="draw" id="draw" style="margin-top:150px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('Polygon')"
-                      ><i class="bi bi-hexagon"></i></button>
-                  </div>
-                  <div class="draw" id="draw" style="margin-top:180px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="draw.removeLastPoint();"
-                      ><i class="bi bi-arrow-counterclockwise"></i></button>
-                  </div>
-                  <div class="draw" id="draw" style="margin-top:210px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('None')"
-                      ><i class="bi bi-x"></i></button>
-                  </div>
-                  <div class="draw" id="draw" style="margin-top:240px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="clear()"
-                      ><i class="bi bi-x"></i></button>
-                  </div>
-                  <div class="draw" id="draw" style="margin-top:270px">
-                    <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="showInfo=!showInfo"
-                      ><i class="bi bi-info-square-fill"></i></button>
-                  </div>
-
-                </div>
-                </div>
-          </div>
-
-        </div>
-
-
-      </div>
-        </div>
-        </div>
-
-      <!--  -->
-
-          </mat-expansion-panel>
-        </mat-accordion>
-
-      </div>
-
-      <div>
-        <mat-accordion>
-
-          <mat-expansion-panel  [expanded]="true"
-                               >
+          style="background-color:#F0F0F0">
             <mat-expansion-panel-header class="custom-header">
               <mat-panel-title>
                 Ajouter des lots :
@@ -232,7 +99,7 @@
               <div class="row">
                 <div class="col-6">
                   <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Intitulé</label>
+                    <label for="exampleFormControlTextarea1" class="form-label">Intitulé :</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                     [(ngModel)]="newLot.intitule"
                      ></textarea>
@@ -241,7 +108,7 @@
 
               <div class="col-6">
                 <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">Observation : </label>
+                  <label for="exampleFormControlTextarea1" class="form-label">Observation :</label>
                   <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                   [(ngModel)]="newLot.observation"
                    ></textarea>
@@ -282,9 +149,113 @@
 
           <div class="row">
             <div class="col-4">
-              <button type="button" class="btn btn-success" (click)="addlot()">Ajouter lot </button>
-              </div>
-              </div>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Provinces</label>
+              <select class="form-select" aria-label="Default select example" (change)="changeprovince($event)" >
+  
+                <option selected [value]="ele.id_province" *ngFor="let ele of provinces">{{ele.name}}</option>
+  
+                <!-- <option selected value="Nador">Nador</option>
+                <option value="Taourirt">Taourirt</option>
+                <option value="Guercif">Guercif</option>
+                <option value="Taza">Taza</option> -->
+              </select>
+  
+  
+          </div>
+        </div>
+        <div class="col-1">
+          <label for="exampleFormControlTextarea1" class="form-label"></label>
+
+          <button type="button" class="btn btn-success" (click)="addSection()" style="margin-top:7px">Ajouter</button>
+     
+      </div>
+  
+      <div class="col-6"></div>
+  
+      </div>
+      <div class="row">
+        <div class="col-12">
+        <div class="mb-3">
+  
+          <table id="customers">
+  <tr>
+    <th>Sections province</th>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+  <tr *ngFor="let item of newLot.sections" >
+    <td>{{item.geom}}</td>
+  </tr>
+  
+          </table>
+  
+  
+  
+          <div class="card cardmiddle">
+            <div style="background-color:#b4bdcd;color:black;font-size:13px;text-align:center;padding:'10px 15px';font-weight:bold">
+               Ajout des sites par carte
+            </div>
+  
+            <div class="card-body">
+                <div id="mapWrap" style="width: 100%; height: 67.5vh">
+  
+                    <div
+                      id="mapPrev"
+                      class="mapPrev"
+                      style="width: 100%; height: 67.5vh"
+                    >
+                    <div class="draw" id="draw" style="margin-top:60px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px;"(click)="changto('Point')"
+                        ><i class="bi bi-cursor-fill"></i></button>
+                    </div>
+                    <div class="draw" id="draw" style="margin-top:90px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px;" (click)="changto('LineString')" title="line"
+                        ><i class="bi bi-signpost-split-fill"></i></button>
+                    </div>
+                    <div class="draw" id="draw" style="margin-top:120px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('Circle')"
+                        ><i class="bi bi-alexa"></i></button>
+                    </div>
+                    <div class="draw" id="draw" style="margin-top:150px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('Polygon')"
+                        ><i class="bi bi-hexagon"></i></button>
+                    </div>
+                    <div class="draw" id="draw" style="margin-top:180px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="draw.removeLastPoint();"
+                        ><i class="bi bi-arrow-counterclockwise"></i></button>
+                    </div>
+                    <div class="draw" id="draw" style="margin-top:210px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="changto('None')"
+                        ><i class="bi bi-x"></i></button>
+                    </div>
+                    <div class="draw" id="draw" style="margin-top:240px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="clear()"
+                        ><i class="bi bi-x"></i></button>
+                    </div>
+                    <div class="draw" id="draw" style="margin-top:270px">
+                      <button type="button" id="pkdpkf" class="myButton" style="margin:10px" (click)="showInfo=!showInfo"
+                        ><i class="bi bi-info-square-fill"></i></button>
+                    </div>
+  
+                  </div>
+                  </div>
+            </div>
+  
+          </div>
+  
+  
+        </div>
+          </div>
+          </div>
+
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-success" (click)="addlot()">Ajouter lot </button>
+
+          </div>
+
+        
 <br>
               <div class="row">
                 <div class="col-12">
@@ -335,7 +306,11 @@
 
           </div>
 
-          <button type="button" class="btn btn-success" (click)="saveProject()">Ajouter Projet</button>
+          <div class="d-grid gap-2">
+
+            <button type="button" class="btn btn-primary" (click)="saveProject()">Ajouter Projet</button>
+
+          </div>
 
           </mat-expansion-panel>
         </mat-accordion>

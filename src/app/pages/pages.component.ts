@@ -177,7 +177,9 @@ export class PagesComponent implements OnInit {
     const id = event.target.value;
     this.selectedProjet = this.projets.find((c) => c.id === Number(id)) || null;
     this.marches = this.selectedProjet.lots
-      .map((l) => l.marche)
+      // .map((l) => l.marche)
+      .flatMap((lot) => lot.marches)
+
       .filter((marche) => marche !== null);
     console.log(this.selectedProjet);
     console.log(this.marches);
