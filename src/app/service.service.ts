@@ -70,6 +70,9 @@ export class ServiceService {
   public saveMarchetoLot(data:any):Observable<any>{
     return this.httpClient.post<any>(`${this.apiUrl}/rest/saveMarchetoLot`,data)
   }
+  public saveMarcheAfterInit(data:any):Observable<any>{
+    return this.httpClient.post<any>(`${this.apiUrl}/rest/saveMarcheAfterInit`,data)
+  }
 
 
   public getGeomProjet(data:any):Observable<any>{

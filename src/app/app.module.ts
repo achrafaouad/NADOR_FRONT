@@ -18,7 +18,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { TimeService } from "./time.service"
-
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +40,8 @@ import { TimeService } from "./time.service"
     MatTableModule,
     HttpClientModule,
     MatExpansionModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    MatButtonModule
   ],
   providers: [TimeService],
   bootstrap: [AppComponent]

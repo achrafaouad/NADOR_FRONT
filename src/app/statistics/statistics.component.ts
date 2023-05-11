@@ -4,6 +4,10 @@ import { ServiceService } from '../service.service';
 
 export interface Marche {
 
+  etape_etude:string;
+  status_etude:string;
+  delegation:string;
+  status_marche:string;
     numero_marche:string;
     objet:string;
     titulaire:string;
@@ -37,6 +41,8 @@ export class StatisticsComponent implements OnInit {
 
 
 
+  ajout:boolean = false;
+
   niveau: any;
   selectedNiveau: any;
 
@@ -48,7 +54,10 @@ export class StatisticsComponent implements OnInit {
 
 
   marche:Marche = {
-
+    etape_etude:null,
+    status_etude:null,
+    delegation:null,
+    status_marche:null,
     numero_marche:null,
     objet:null,
     titulaire:null,
@@ -75,30 +84,23 @@ export class StatisticsComponent implements OnInit {
 
   constructor(private service:ServiceService) {
 
-this.service.getNiveau().subscribe(
-  res=>{
-    console.log(res)
-    this.niveau = res
-  },
-  err=>{
-    console.log(err)
-
-  },
-)
-
-
-// this.service.getProjets().subscribe(
-//   res=>{
-//     console.log(res)
-//     this.projets = res
-//   },
-//   err=>{
-//     console.log(err)
-
-//   },
-// )
+    this.getNiveau()
 
   }
+
+  getNiveau(){
+    this.service.getNiveau().subscribe(
+      res=>{
+        console.log(res)
+        this.niveau = res
+      },
+      err=>{
+        console.log(err)
+    
+      },
+    )
+  }
+
 
   ngOnInit(): void {
   }
@@ -123,6 +125,21 @@ this.service.getNiveau().subscribe(
     this.selectedLot= this.lots.find(c => c.id === Number(id)) || null;
     //this.lots = this.selectedProjet.lots
     console.log(this.selectedLot)
+  }
+
+  changeMarche(event){
+    const id = event.target.value;
+    console.log(id)
+    this.marche= this.selectedLot.marches.find(c => c.id_marche === Number(id)) || null;
+    //this.lots = this.selectedProjet.lots
+    console.log(this.marche)
+  }
+
+
+  ajoutermarcheToLot(){
+    this.selectedLot.marches.push({
+      objet:this.marche.objet
+    })
   }
 
 
@@ -159,22 +176,57 @@ this.service.getNiveau().subscribe(
 
 
 
-      saveMarche(){
+      saveMarche(){   
+        
+        
+        console.log(this.selectedLot)
 
-
-
-        this.selectedLot.marches.push(this.marche)
-
-        this.service.saveMarchetoLot(this.selectedLot).subscribe(
+        this.service.saveMarcheAfterInit(this.marche).subscribe(
           res=>{
             console.log(res)
+            this.clear()
           },
           err=>{
             console.log(err)
           },
         )
-
-        // console.log(this.selectedLot)
       }
 
+
+      saveLotMarche(){
+        this.service.saveMarchetoLot(this.selectedLot).subscribe(
+          res=>{
+            this.ajout = !this.ajout
+            this.clear()
+          },
+          err=>{
+            console.log(err)
+          },
+        )
+      }
+
+      clear(){
+        this.selectedNiveau = null;
+        this.marche = {
+          etape_etude:null,
+          status_etude:null,
+          delegation:null,
+          status_marche:null,
+          numero_marche:null,
+          objet:null,
+          titulaire:null,
+          montant:null,
+          os_commencement:null,
+          dateOverturePlit:null,
+          n_appel_offre:null,
+          delai:null,
+          estimationao:null,
+          montantengage:null,
+          prixes:[]
+      
+        };
+        this.selectedLot = null;
+        this.selectedProjet = null;
+        this.getNiveau()
+      }
 }

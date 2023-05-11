@@ -105,3 +105,28 @@ h1 em {
       height: 5px;
     background-color:#f8f8f8;
   }
+
+
+
+  
+
+.custom-fieldset {
+  border: 1px solid #ccc; /* Set border style and color */
+  padding: 10px; /* Add padding to create space between the border and content */
+  border-radius: 5px; /* Apply rounded corners to the fieldset */
+  display: inline-block; /* Display the fieldset as an inline block */
+  position: relative; /* Position the fieldset relatively */
+  width: 100%;
+  background-color: #F0F0F0;
+  ;
+}
+
+.custom-fieldset legend {
+  font-size: 16px; /* Customize the font size of the fieldset title */
+  font-weight: bold; /* Make the fieldset title bold */
+  padding: 0 5px; /* Add padding to create space around the fieldset title */
+  position: absolute; /* Position the legend absolutely */
+  top: -10px; /* Adjust the top position to align with the border */
+  left: 10px; /* Adjust the left position to align with the border */
+  background-color: #fff; /* Set background color to match the fieldset background */
+}
