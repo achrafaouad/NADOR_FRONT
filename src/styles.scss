@@ -108,6 +108,18 @@ h1 em {
 
 
 
+  .ten p{
+    font-size:18px; font-weight:500; text-transform:uppercase;
+  }
+  .ten p:before {
+      background-color: #c50000;
+      border-radius: 0.25rem;
+      content: '';
+      display: block;
+      height: 0.25rem;
+      width: 42px;
+      margin-bottom: 1.25rem;
+  }
   
 
 .custom-fieldset {

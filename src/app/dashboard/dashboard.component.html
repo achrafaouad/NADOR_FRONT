@@ -84,7 +84,7 @@
         <mat-accordion   >
 
           <mat-expansion-panel  [expanded]="true"
-          style="background-color:#F0F0F0">
+            style="background-color:#F0F0F0">
             <mat-expansion-panel-header class="custom-header">
               <mat-panel-title>
                 Ajouter des lots :
@@ -117,79 +117,26 @@
 
             </div>
             <div class="row">
-              <div class="col-4">
-                <div class="mb-3">
-                  <label for="exampleFormControlTextarea1" class="form-label">PKD : </label>
-                  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="pkd"
-                  [(ngModel)]="newLot.pkd"
-                  >
-              </div>
-            </div>
+              
 
-            <div class="col-4">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">PKF : </label>
-                <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="pkf"
-                [(ngModel)]="newLot.pkf"
-                >
-            </div>
-          </div>
-
-          <div class="col-4">
+          <!-- <div class="col-4">
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">Montant : </label>
               <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="montant"
               [(ngModel)]="newLot.montant"
                >
           </div>
-        </div>
+        </div> -->
 
 
           </div>
 
-          <div class="row">
-            <div class="col-4">
-            <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Provinces</label>
-              <select class="form-select" aria-label="Default select example" (change)="changeprovince($event)" >
-  
-                <option selected [value]="ele.id_province" *ngFor="let ele of provinces">{{ele.name}}</option>
-  
-                <!-- <option selected value="Nador">Nador</option>
-                <option value="Taourirt">Taourirt</option>
-                <option value="Guercif">Guercif</option>
-                <option value="Taza">Taza</option> -->
-              </select>
-  
-  
-          </div>
-        </div>
-        <div class="col-1">
-          <label for="exampleFormControlTextarea1" class="form-label"></label>
-
-          <button type="button" class="btn btn-success" (click)="addSection()" style="margin-top:7px">Ajouter</button>
-     
-      </div>
-  
-      <div class="col-6"></div>
-  
-      </div>
+        
       <div class="row">
         <div class="col-12">
         <div class="mb-3">
   
-          <table id="customers">
-  <tr>
-    <th>Sections province</th>
-  </tr>
-  <tr>
-    <td></td>
-  </tr>
-  <tr *ngFor="let item of newLot.sections" >
-    <td>{{item.geom}}</td>
-  </tr>
-  
-          </table>
+          
   
   
   
@@ -244,6 +191,96 @@
             </div>
   
           </div>
+
+          <div class="row">
+            <div class="col-3">
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Provinces</label>
+              <select class="form-select" aria-label="Default select example" (change)="changeprovince($event)" >
+  
+                <option selected [value]="ele.id_province" *ngFor="let ele of provinces">{{ele.name}}</option>
+  
+                <!-- <option selected value="Nador">Nador</option>
+                <option value="Taourirt">Taourirt</option>
+                <option value="Guercif">Guercif</option>
+                <option value="Taza">Taza</option> -->
+              </select>
+  
+  
+          </div>
+        </div>
+        
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">PKD : </label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="pkd"
+            [(ngModel)]="pkd"
+            >
+        </div>
+      </div>
+
+      <div class="col-3">
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">PKF : </label>
+          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="pkf"
+          [(ngModel)]="pkf"
+          >
+      </div>
+      
+    </div>
+
+    <div class="col-3">
+      <div class="mb-3">
+        <label for="exampleFormControlTextarea1" class="form-label">Type</label>
+        <select class="form-select" aria-label="Default select example"  [(ngModel)]="type">
+          <option selected  value="OA" >OA</option>
+          <option  value="Section" >Section</option>
+          <!-- <option selected value="1">Niveau 1 : Connectivités directes</option> -->
+          <!-- <option value="2">Niveau 2 : Connectivité autoroutièr Nador–Guercif sur104 km</option>
+          <option value="3">Niveau 3 : Connectivités retenues par la Banque Mondiale</option>
+          <option value="4">Autres</option> -->
+        </select>
+    </div>
+
+    </div>
+  
+      </div>
+      
+       
+
+
+      
+
+      <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-success" (click)="addSection()" style="margin-top:7px">Ajouter section</button>
+
+      </div>
+
+      
+
+      <div class="ten">
+        <p>Mes Sections</p>
+      </div>
+      <table id="customers">
+        <tr>
+          <th>province</th>
+          <th>pkd</th>
+          <th>pkf</th>
+          <th>type</th>
+          <th>geometry</th>
+        </tr>
+        <tr>
+          <td></td>
+        </tr>
+        <tr *ngFor="let item of newLot.sections" >
+          <td *ngIf="item.province">{{item.province.name}}</td>
+          <td>{{item.pkd}}</td>
+          <td>{{item.pkf}}</td>
+          <td>{{item.type}}</td>
+          <td><img src="../../assets/eye.png" width="36px" style="cursor:pointer"(click)="visualiser(item.geom)"></td>
+        </tr>
+        
+                </table>
   
   
         </div>
@@ -257,51 +294,45 @@
 
         
 <br>
-              <div class="row">
-                <div class="col-12">
+              
 
-                  <table mat-table #table [dataSource]="myDataArray" class="mat-elevation-z8">
+<div class="ten">
+  <p>Mes Lots</p>
+</div>
+                  <table id="customers">
+                    <thead>
+                      <tr>
+                        <th rowspan="2">Intitule</th>
+                        <th rowspan="2">Observation</th>
+                        <th colspan="5">Sections</th>
+                      </tr>
+                      <tr>
+                        <th >Province</th>
+                        <th >type</th>
+                        <th >PKD</th>
+                        <th >PKF</th>
+                        <th >Visualiser</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let item of myDataArray">
+                        <tr>
+                          <td [attr.rowspan]="item.sections.length + 1">{{ item.intitule }}</td>
+                          <td [attr.rowspan]="item.sections.length + 1">{{ item.observation }}</td>
+                        </tr>
+                        <ng-container *ngFor="let section of item.sections">
+                          <tr>
+                            <td>{{ section.province.name }}</td>
+                            <td>{{ section.type }}</td>
+                            <td>{{ section.pkd }}</td>
+                            <td>{{ section.pkf }}</td>
+                            <td><img src="../../assets/eye.png" width="36px" style="cursor:pointer"(click)="visualiser(section.geom)"></td>
 
-                    <ng-container matColumnDef="intitulelot">
-                    <mat-header-cell *matHeaderCellDef>intitulelot</mat-header-cell>
-                    <mat-cell *matCellDef="let lot"><div> {{lot.intitule}} </div></mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="observationlot">
-                    <mat-header-cell *matHeaderCellDef>observationlot</mat-header-cell>
-                    <mat-cell *matCellDef="let lot"><div> {{lot.observation}} </div></mat-cell>
-                    </ng-container>
-
-                    <ng-container matColumnDef="pkdlot">
-                      <mat-header-cell *matHeaderCellDef>pkdlot</mat-header-cell>
-                      <mat-cell *matCellDef="let lot"><div> {{lot.pkd}} </div></mat-cell>
-                      </ng-container>
-
-                      <ng-container matColumnDef="pkflot">
-                        <mat-header-cell *matHeaderCellDef>pkflot</mat-header-cell>
-                        <mat-cell *matCellDef="let lot"><div> {{lot.pkf}} </div></mat-cell>
+                          </tr>
                         </ng-container>
-
-                        <ng-container matColumnDef="montantlot">
-                          <mat-header-cell *matHeaderCellDef>montantlot</mat-header-cell>
-                          <mat-cell *matCellDef="let lot"><div> {{lot.montant}} </div></mat-cell>
-                          </ng-container>
-
-                          <ng-container matColumnDef="actions">
-                            <mat-header-cell *matHeaderCellDef>Actions </mat-header-cell>
-                            <mat-cell *matCellDef="let lot">
-                            <!-- <button mat-button color="primary" (click)="openDialog(this.lot)">Modifier</button> | -->
-                            <button type="button" class="btn btn-success" (click)="delete(this.lot)">Supprimer</button>
-                            </mat-cell>
-                            </ng-container>
-
-                    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
-                    <mat-row *matRowDef="let dataSource; columns: columnsToDisplay;"></mat-row>
-
-                    </table>
-
-                  </div>
-                  </div>
+                      </ng-container>
+                    </tbody>
+                  </table>
 
 
           </div>

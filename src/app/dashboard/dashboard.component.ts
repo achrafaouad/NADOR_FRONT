@@ -71,6 +71,14 @@ public newLot = {intitule: "", observation: "" , pkd : 0,pkf : 0, montant : 0 ,s
    source: this.source,
 
  });
+
+ source2 = new VectorSource({wrapX: false});
+
+  vector2 = new VectorLayer({
+   source: this.source2,
+
+ });
+
   lastFeature: any;
   last_feature: any;
   latitude: number;
@@ -85,6 +93,9 @@ public newLot = {intitule: "", observation: "" , pkd : 0,pkf : 0, montant : 0 ,s
   selectedNiveau: any;
   selectedFoncier: any;
   selectedProvince: any;
+  pkd: any;
+  pkf: any;
+  type: any;
 
 
 
@@ -140,6 +151,14 @@ this.service.getProvinecs().subscribe(
   ngOnInit(): void {
 
 
+    this.source2.on('addfeature', () =>{
+      this.mapPrevLine.getView().fit(
+          this.source2.getExtent(),
+          { duration: 1000, size: this.mapPrevLine.getSize(), maxZoom: 15 }
+      );
+  });
+
+
     this.container = <HTMLElement>document.getElementById("popup");
     this.content = <HTMLElement>document.getElementById("popup-content");
     this.closer = <HTMLElement> document.getElementById("popup-closer");
@@ -168,7 +187,7 @@ this.service.getProvinecs().subscribe(
       }) ,
 
 
-      this.vector
+      this.vector,this.vector2
 
     ],
       controls: [
@@ -275,15 +294,28 @@ this.service.getProvinecs().subscribe(
 
 
   addSection(){
-    this.newLot.sections.push({
+    this.newLot.sections.push(JSON.parse(JSON.stringify({
       id_section:null,
+      pkd:this.pkd,
+      pkf:this.pkf,
+      type:this.type,
       geom:this.last_feature,
       province:this.selectedProvince
-    })
+    })))
   }
 
+  visualiser(item){
+    if(item){
+      this.source2.clear();
+      this.source2.addFeatures(this.format.readFeatures(item));
+    }
+    
+  }
   clear(){
   this.source.clear()
+  this.pkd = null
+  this.pkf = null
+  this.selectedProvince = null
   }
 
   addlot(){
