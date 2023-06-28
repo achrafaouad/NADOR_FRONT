@@ -101,6 +101,7 @@ public newLot = {intitule: "", observation: "" , pkd : 0,pkf : 0, montant : 0 ,s
 
 
   constructor( private TimeService : TimeService,private service:ServiceService) {
+    console.log("constructor")
 this.currentDate = TimeService.getTime().toLocaleDateString();
 this.currentTime = TimeService.getTime().toLocaleTimeString();
 this.sum = TimeService.add(5,2,3,4);
@@ -150,6 +151,7 @@ this.service.getProvinecs().subscribe(
 
   ngOnInit(): void {
 
+    console.log("ngOnInit")
 
     this.source2.on('addfeature', () =>{
       this.mapPrevLine.getView().fit(

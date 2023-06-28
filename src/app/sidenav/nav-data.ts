@@ -26,6 +26,11 @@ export const navbarData: INavbarData[] = [
   icon: 'fa fa-id-card',
   label: 'Situations marché'
 },
+ {
+  routeLink: 'suivieProject',
+  icon: 'fa fa-briefcase',
+  label: 'Suivie Porject'
+},
 //     {
 //         routeLink: 'products',
 //         icon: 'fal fa-box-open',

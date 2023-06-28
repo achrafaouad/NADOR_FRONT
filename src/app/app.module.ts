@@ -22,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { SituationGlobalComponent } from './situation-global/situation-global.component';
 import { CardComponentComponent } from './card-component/card-component.component';
 import { HelperCardconponentComponent } from './helper-cardconponent/helper-cardconponent.component';
+import { SuivieProjectComponent } from './suivie-project/suivie-project.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { HelperCardconponentComponent } from './helper-cardconponent/helper-card
     TestComponent,
     SituationGlobalComponent,
     CardComponentComponent,
-    HelperCardconponentComponent
+    HelperCardconponentComponent,
+    SuivieProjectComponent
   ],
   imports: [
     BrowserModule,

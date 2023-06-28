@@ -313,7 +313,7 @@ defaultStyle = new Style({
   ngOnInit(): void {
 
     this.mapPrevLine= new Map({
-      target: "mapPrev",
+      target: "mapPrev1",
       layers: [  new TileLayer({
         source: new XYZ({
           url: 'http://mt0.google.com/vt/lyrs=p&hl=en&x={x}&y={y}&z={z}'
@@ -381,6 +381,8 @@ defaultStyle = new Style({
           }
         }
        
+
+        console.log(geom)
                 
         if(res!==null){
           for(let ele of geom){

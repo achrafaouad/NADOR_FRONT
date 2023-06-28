@@ -8,6 +8,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { SituationGlobalComponent } from './situation-global/situation-global.component';
 import { CardComponentComponent } from './card-component/card-component.component';
+import { SuivieProjectComponent } from './suivie-project/suivie-project.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'situationGlobal', component: SituationGlobalComponent },
   {path: 'Card', component: CardComponentComponent },
   {path: 'media', component: MediaComponent },
+  {path: 'suivieProject', component: SuivieProjectComponent },
 ];
 
 @NgModule({

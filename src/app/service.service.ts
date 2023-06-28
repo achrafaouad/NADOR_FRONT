@@ -80,6 +80,9 @@ export class ServiceService {
   }
 
 
+  public getGeomProjetwithSomeAdditionalData(data:any):Observable<any>{
+    return this.httpClient.post<any>(`${this.apiUrl}/rest/getGeomProjetwithSomeAdditionalData`,data)
+  }
 
   public getLastSituationForMarche(data:any):Observable<any>{
     return this.httpClient.post<any>(`${this.apiUrl}/rest/getLastSituationForMarche`,data)

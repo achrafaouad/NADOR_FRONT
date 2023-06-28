@@ -1,0 +1,119 @@
+<h1>Fiche datail</h1>
+
+
+<div class="card">
+  <div class="card-header" class="seven" >
+    <br>
+    <h1>Détail projet</h1> 
+  </div>
+  
+  <div class="card-body">
+    <div class="container text-right">
+
+      <div class="row">
+        <div class="col-3">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
+              <option selected value="0">selectionner </option>
+              <option  [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+            </select>
+          
+          </div>
+
+
+
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Projet : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeProjets($event)">
+              <option selected value="0">selectionner </option>
+              <option  [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
+            </select>
+            
+          </div>
+
+        </div>
+
+      
+
+
+      </div>
+
+
+<div class="row">
+  <div class="col-6">
+    <table id="customers" *ngIf="selectedProjet">
+      <tr><th colspan="2"> Fiche du projet</th></tr>
+      <tr> <td>objet</td><td>{{selectedProjet.numero_marche}}</td></tr>
+      <tr> <td>mot_cle</td><td>{{selectedProjet.mot_cle}}</td></tr>
+      <tr> <td>observation</td><td>{{selectedProjet.observation}}</td></tr>
+      <tr> <td>anneeProjet</td><td>{{selectedProjet.anneeProjet}}</td></tr>
+    
+    </table>
+
+    <div class="container mt-10" *ngIf="!selectedProjet">
+      <div class="card skeleton">
+        <div class="card-body skeleton">
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="col-6">
+    <div class="card cardmiddle">
+      <div id="mapWrap" style="width: 100%; height: 40.5vh">
+
+        <div id="mapPrev2" class="mapPrev2" style="width: 100%; height: 40.5vh">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+
+  
+</div>
+
+
+
+<div class="container">
+    <table id="customers">
+        <thead>
+          <tr>
+            <th>Date d'Ouverture</th>
+            <th>Délai</th>
+            <th>Estimation AO</th>
+            <th>ID Marché</th>
+            <th>Montant</th>
+            <th>Montant Engagé</th>
+            <th>N° Appel d'Offre</th>
+            <th>Numéro Marché</th>
+            <th>Objet</th>
+            <th>OS Commencement</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="marches">
+          <tr *ngFor="let item of marches">
+            <td>{{ item.dateOverturePlit | date:'dd/MM/yyyy'}}</td>
+            <td>{{ item.delai }}</td>
+            <td>{{ item.estimationao }}</td>
+            <td>{{ item.id_marche }}</td>
+            <td>{{ item.montant }}</td>
+            <td>{{ item.montantengage }}</td>
+            <td>{{ item.n_appel_offre }}</td>
+            <td>{{ item.numero_marche }}</td>
+            <td>{{ item.objet }}</td>
+            <td>{{ item.os_commencement | date:'dd/MM/yyyy'}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+</div>
+
+      </div>
+      </div>
+</div>
