@@ -19,6 +19,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { NgApexchartsModule } from "ng-apexcharts";
 import { TimeService } from "./time.service"
 import {MatButtonModule} from '@angular/material/button';
+import { SituationGlobalComponent } from './situation-global/situation-global.component';
+import { CardComponentComponent } from './card-component/card-component.component';
+import { HelperCardconponentComponent } from './helper-cardconponent/helper-cardconponent.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +33,10 @@ import {MatButtonModule} from '@angular/material/button';
     MediaComponent,
     SettingsComponent,
     SublevelMenuComponent,
-    TestComponent
+    TestComponent,
+    SituationGlobalComponent,
+    CardComponentComponent,
+    HelperCardconponentComponent
   ],
   imports: [
     BrowserModule,

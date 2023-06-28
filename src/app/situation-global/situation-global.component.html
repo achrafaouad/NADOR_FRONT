@@ -1,0 +1,257 @@
+<h1>Borderau du marché</h1>
+
+<div class="card">
+  <div class="card-header" class="seven" >
+    <br>
+    <h1>Borderau du marché</h1>
+  </div>
+  <div class="card-body">
+    <div class="container text-right">
+
+      <!-- <div class="row">
+        <div class="col-4">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
+              <option selected value="" >Selectionner un Niveau</option>
+              <option   [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+            </select>
+          </div>
+
+
+
+        </div>
+        <div class="col-4">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Projet : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeProjets($event)">
+              <option selected value="" >Selectionner un projet</option>
+              <option   [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="col">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">N° marche : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeMarches($event)">
+              <option selected value="" >Selectionner un marché</option>
+              <option   [value]="ele.id_marche" *ngFor="let ele of marches">{{ele.objet}}</option>
+            </select>
+          </div>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col-3">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
+              <option selected value="0">selectionner un niveau</option>
+              <option  [value]="ele.id" *ngFor="let ele of niveau">{{ele.description}}</option>
+            </select>
+
+          </div>
+
+
+
+        </div>
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Projet : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeProjets($event)">
+              <option selected value="0">selectionner un projet</option>
+              <option  [value]="ele.id" *ngFor="let ele of projets">{{ele.objet}}</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="col-3">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Lot : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeLots($event)">
+              <option selected value="0">selectionner un lot</option>
+              <option  [value]="ele.id" *ngFor="let ele of lots">{{ele.intitule}}</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="col-3" *ngIf="!selectedLot">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Marché : </label>
+            <select class="form-select" aria-label="Default select example" >
+              <option selected value="0">selectionner un marché</option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+        <div class="col-3" *ngIf="selectedLot">
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Marché : </label>
+            <select class="form-select" aria-label="Default select example" (change)="changeMarche($event)">
+              <option selected value="0">selectionner un marché</option>
+              <option  [value]="ele.id_marche" *ngFor="let ele of selectedLot.marches">{{ele.objet}}</option>
+            </select>
+
+          </div>
+
+        </div>
+
+
+      </div>
+<br>
+<br>
+
+      <div class="row">
+        <div class="col-4">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Date Situation : </label>
+            <input type="date" class="form-control" id="exampleFormControlInput1"  [(ngModel)]="date_Situation">
+          </div>
+        </div>
+        <div class="col-8">
+
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Observation : </label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="observation"></textarea>
+          </div>
+        </div>
+        </div>
+      </div>
+
+          <h1>Liste des prix  : </h1>
+
+
+          <table id="customers" *ngIf="!selectedMarche">
+            <tr>
+
+              <th>N° Prix</th>
+              <th>Prix</th>
+              <th>Quantité</th>
+              <th>Prix_Unitaire</th>
+              <th>Montant</th>
+              <th>Date demarrage</th>
+              <th>Quantité Prevu</th>
+              <th>Quantité réalisé</th>
+              <th>Montant PGT</th>
+              <th>Montant réalisé</th>
+              <th>Avancement PGT</th>
+              <th>Avancament réalisé</th>
+            </tr>
+
+            <tr>
+              <td colspan="12" style="text-align:center"> aucun marché selectionné </td>
+            </tr>
+
+            </table>
+
+
+          <table id="customers" *ngIf="selectedMarche && isemptySituation">
+            <tr>
+
+              <th>N° Prix</th>
+              <th>Prix</th>
+              <th>Quantité</th>
+              <th>Prix_Unitaire</th>
+              <th>Montant</th>
+              <th>Date demarrage</th>
+              <th>Quantité Prevu</th>
+              <th>Quantité réalisé</th>
+              <th>Montant PGT</th>
+              <th>Montant réalisé</th>
+              <th>Avancement PGT</th>
+              <th>Avancament réalisé</th>
+            </tr>
+
+            <tr *ngFor="let ele of selectedMarche.situations[0].situationdetail" >
+              <td>{{ele.prix.numprix}}</td>
+              <td> {{ele.prix.prix}}</td>
+              <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.qte" /></td>
+              <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.pu" /></td>
+              <td>{{ele.prix.montant}}</td>
+              <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
+              <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
+              <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
+
+              <td>  {{ele.prix.pu *ele.qteprecu | number : '1.0-2'}} </td>
+              <td>  {{ele.prix.pu *ele.qtereacu | number : '1.0-2'}} </td>
+              <td>  {{100*ele.qteprecu/ele.prix.qte | number : '1.0-2'}}%</td>
+              <td>  {{100* ele.qtereacu/ele.prix.qte | number : '1.0-2'}}%</td>
+
+
+
+
+            </tr>
+
+                    </table>
+
+
+                    <table id="customers" *ngIf="selectedMarche && !isemptySituation">
+                      <tr>
+
+                        <th>N° Prix</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Prix_Unitaire</th>
+                        <th>Montant</th>
+                        <th>Date demarrage</th>
+                        <th>Quantité Prevu</th>
+                        <th>Quantité réalisé</th>
+                        <th>Montant PGT</th>
+                        <th>Montant réalisé</th>
+                        <th>Avancement PGT</th>
+                        <th>Avancament réalisé</th>
+                      </tr>
+
+                      <tr *ngFor="let ele of lastSituation.situationdetail" >
+                        <td>{{ele.prix.numprix}}</td>
+                        <td> {{ele.prix.prix}}</td>
+                        <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.qte" /></td>
+                        <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.prix.pu" /></td>
+                        <td>{{ele.prix.montant}}</td>
+                        <td>  <input type="date" class="form-control" name="position" [(ngModel)] ="ele.datedemarage" [ngModel]="ele.datedemarage | date:'y-MM-dd'" /></td>
+                        <td>  <input type="number" class="form-control" name="position"  [(ngModel)] = "ele.qteprecu"/></td>
+                        <td>  <input type="number" class="form-control" name="position" [(ngModel)] = "ele.qtereacu" /></td>
+
+                        <td>  {{ele.prix.pu *ele.qteprecu | number : '1.0-2'}} </td>
+                        <td>  {{ele.prix.pu *ele.qtereacu | number : '1.0-2'}} </td>
+                        <td>  {{100*ele.qteprecu/ele.prix.qte | number : '1.0-2'}}%</td>
+                        <td>  {{100* ele.qtereacu/ele.prix.qte | number : '1.0-2'}}%</td>
+
+                      </tr>
+
+                              </table>
+
+
+
+
+                    <br>
+<div class="row">
+  <div class="col-1">
+    <button type="button" class="btn btn-success"  >Calculer</button>
+
+  </div>
+  <div class="col-3">
+
+    <button type="button" class="btn btn-warning"  (click)="saveSituation()" >Valider</button>
+  </div>
+</div>
+        <!-- </div> -->
+        </div>
+
+
+
+
+
+
+</div>

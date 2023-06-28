@@ -4,21 +4,21 @@ import { ServiceService } from '../service.service';
 
 export interface Marche {
 
-  etape_etude:string;
-  status_etude:string;
-  delegation:string;
-  status_marche:string;
-    numero_marche:string;
-    objet:string;
-    titulaire:string;
-    montant:number;
-    os_commencement:Date;
-    dateOverturePlit:Date;
-    n_appel_offre:string;
-    delai:number;
-    estimationao:number;
-    montantengage:number;
-    prixes:any;
+      etape_etude:string;
+      status_etude:string;
+      delegation:string;
+      status_marche:string;
+      numero_marche:string;
+      objet:string;
+      titulaire:string;
+      montant:number;
+      os_commencement:Date;
+      dateOverturePlit:Date;
+      n_appel_offre:string;
+      delai:number;
+      estimationao:number;
+      montantengage:number;
+      prixes:any;
   }
 
 
@@ -96,7 +96,7 @@ export class StatisticsComponent implements OnInit {
       },
       err=>{
         console.log(err)
-    
+
       },
     )
   }
@@ -176,9 +176,9 @@ export class StatisticsComponent implements OnInit {
 
 
 
-      saveMarche(){   
-        
-        
+      saveMarche(){
+
+
         console.log(this.selectedLot)
 
         this.service.saveMarcheAfterInit(this.marche).subscribe(
@@ -223,7 +223,7 @@ export class StatisticsComponent implements OnInit {
           estimationao:null,
           montantengage:null,
           prixes:[]
-      
+
         };
         this.selectedLot = null;
         this.selectedProjet = null;

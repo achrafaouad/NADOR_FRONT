@@ -39,9 +39,9 @@ export class ServiceService {
 
    //private apiUrl = 'http://localhost:80';
 
+    private apiUrl = 'http://localhost:8016';
 
-   private apiUrl = 'http://localhost:8016';
-
+    //private apiUrl = 'https://178.170.116.28/NADOR_BACK';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -108,9 +108,26 @@ export class ServiceService {
     return this.httpClient.get<any>(`${this.apiUrl}/rest/getRadar/${marcheId}`)
   }
 
-  // public getRadar(data:any):Observable<any>{
-  //   return this.httpClient.post<any>(`${this.apiUrl}/rest/getRadar`,data)
-  // }
+
+  public getSituationGlobal(): Observable<any> {
+       return this.httpClient.get<any>(`${this.apiUrl}/rest/getSituationGlobal`);
+      }
+
+  public getSituationGlobalNiv(niveauId: number): Observable<any> {
+     return this.httpClient.get<any>(`${this.apiUrl}/rest/getSituationGlobal?niveauId=${niveauId}`);
+      }
+
+  public getSituationGlobalNivAndProjet(niveauId: number,projetId: number): Observable<any> {
+    return this.httpClient.get<any>(`${this.apiUrl}/rest/getSituationGlobal?niveauId=${niveauId}&projetId=${projetId}`);
+   }
+
+ public getSituationGlobalNivAndProjetAndLot(niveauId: number,projetId: number,lotId: number): Observable<any> {
+  return this.httpClient.get<any>(`${this.apiUrl}/rest/getSituationGlobal?niveauId=${niveauId}&projetId=${projetId}&lotId=${lotId}`);
+ }
+
+public getSituationGlobalNivAndProjetAndLotAndMarche(niveauId: number, projetId : number , lotId : number , marcheId : number): Observable<any> {
+  return this.httpClient.get<any>(`${this.apiUrl}/rest/getSituationGlobal?niveauId=${niveauId}&projetId=${projetId}&lotId=${lotId}&marcheId=${marcheId}`);
+  }
 
 
 

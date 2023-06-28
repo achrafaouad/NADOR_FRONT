@@ -6,6 +6,8 @@ import { PagesComponent } from './pages/pages.component';
 import { ProductsComponent } from './products/products.component';
 import { SettingsComponent } from './settings/settings.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { SituationGlobalComponent } from './situation-global/situation-global.component';
+import { CardComponentComponent } from './card-component/card-component.component';
 
 
 const routes: Routes = [
@@ -19,6 +21,8 @@ const routes: Routes = [
   {path: 'statistics', component: StatisticsComponent }
   ,
   {path: 'pages', component: PagesComponent },
+  {path: 'situationGlobal', component: SituationGlobalComponent },
+  {path: 'Card', component: CardComponentComponent },
   {path: 'media', component: MediaComponent },
 ];
 

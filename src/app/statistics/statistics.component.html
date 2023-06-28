@@ -5,19 +5,19 @@
   <div class="card">
     <div class="card-header" class="seven" >
       <br>
-      <h1>Ajout marche</h1> 
+      <h1>Ajout marche</h1>
     </div>
     <div class="card-body">
 
       <div class="container text-right">
-        
+
 
         <fieldset class="custom-fieldset">
           <legend>Title</legend>
-        
+
           <div class="row">
             <div class="col-3">
-    
+
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Niveau : </label>
                 <select class="form-select" aria-label="Default select example" (change)="changeNiveaux($event)">
@@ -32,9 +32,9 @@
                   <option value="4">Autres</option>
                 </select> -->
               </div>
-    
-    
-    
+
+
+
             </div>
             <div class="col-3">
               <div class="mb-3">
@@ -51,9 +51,9 @@
                   <option value="4">Projet 04</option>
                 </select> -->
               </div>
-    
+
             </div>
-    
+
             <div class="col-3">
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Lot : </label>
@@ -61,15 +61,15 @@
                   <option selected value="0">selectionner un lot</option>
                   <option  [value]="ele.id" *ngFor="let ele of lots">{{ele.intitule}}</option>
                 </select>
-                
+
               </div>
-    
+
             </div>
-         
+
             </div>
   <div class="row">
-  
-  
+
+
             <div class="col-12">
               <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Objet</label>
@@ -79,14 +79,14 @@
           </div>
 
           <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button" (click)="ajoutermarcheToLot()">Ajouter marché</button> 
-    
-          </div>
-          
-        </fieldset>
-        
+            <button class="btn btn-primary" type="button" (click)="ajoutermarcheToLot()">Ajouter marché</button>
 
-        
+          </div>
+
+        </fieldset>
+
+
+
         <div>
           <br>
         </div>
@@ -121,9 +121,9 @@
             </tr>
           </tbody>
         </table>
-        <br>  
+        <br>
 <div class="d-flex justify-content-center">
-  
+
        <button type="button" class="btn btn-primary" (click)="saveLotMarche()" >sauvgarder</button>
        <button type="button" class="btn btn-danger" (click)="ajout = !ajout" >annuler</button>
 
@@ -135,8 +135,8 @@
         </div>
 
     </div>
-  
-    
+
+
 </ng-template>
 
 <div *ngIf="!ajout; else template">
@@ -148,13 +148,13 @@
       +
     </button>
   </div>
-  
+
 </div>
 
 <div class="card">
   <div class="card-header" class="seven" >
     <br>
-    <h1>suivi marche</h1> 
+    <h1>suivi marche</h1>
   </div>
   <div class="card-body">
     <div class="container text-right">
@@ -220,9 +220,9 @@
             <label for="exampleFormControlTextarea1" class="form-label">Marché : </label>
             <select class="form-select" aria-label="Default select example" (change)="changeLots($event)">
               <option selected value="0">selectionner un marché</option>
-              
+
             </select>
-            
+
           </div>
 
         </div>
@@ -234,7 +234,7 @@
               <option selected value="0">selectionner un marché</option>
               <option  [value]="ele.id_marche" *ngFor="let ele of selectedLot.marches">{{ele.objet}}</option>
             </select>
-            
+
           </div>
 
         </div>
@@ -252,7 +252,7 @@
           <div class="col-6">
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">étape : </label>
-            
+
               <select class="form-select" aria-label="Default select example" [(ngModel)]="marche.etape_etude">
                 <option selected value="ED">ED</option>
                 <option value="EG">EG</option>
@@ -262,7 +262,7 @@
 
             </div>
           </div>
-  
+
           <div class="col-6">
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">Statut : </label>
@@ -289,7 +289,7 @@
             <span class="visually-hidden">Loading...</span>
           </div>
         </div>
-        
+
 
         <div class="row" *ngIf="marche.status_etude == 'approuvé' && marche.etape_etude == 'PE'">
 
@@ -299,7 +299,7 @@
               <input type="text" class="form-control" id="exampleFormControlInput1" [(ngModel)]="marche.n_appel_offre" >
             </div>
           </div>
-  
+
           <div class="col-3">
             <div class="mb-3">
               <label for="exampleFormControlTextarea1" class="form-label">Date OP : </label>
@@ -324,7 +324,7 @@
               <select class="form-select" aria-label="Default select example" [(ngModel)]="marche.delegation">
                 <option selected value="Oui">Oui</option>
                 <option value="Non">Non</option>
-            
+
               </select>
           </div>
         </div>
@@ -335,12 +335,12 @@
               <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [(ngModel)]="marche.objet"></textarea>
           </div>
         </div>
-      
+
         </div>
         </fieldset>
 
-         
-      
+
+
       <br>
       <br>
       <fieldset class="custom-fieldset">
@@ -397,7 +397,7 @@
           <option value="en cours d'approbation">	en cours d'approbation</option>
           <option value="approuvé">	approuvé</option>
           <option value="en cours">	en cours</option>
-      
+
         </select>
     </div>
   </div>
@@ -513,14 +513,14 @@
 
 
 </div>
-        
+
 
         </fieldset>
         <br>
         <br>
         <div class="d-grid gap-2">
           <button type="button" class="btn btn-primary" (click)="saveMarche()">update </button>
-          
+
           </div>
           <br>
         <br>
