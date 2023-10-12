@@ -304,6 +304,9 @@ this.service.getProvinecs().subscribe(
       geom:this.last_feature,
       province:this.selectedProvince
     })))
+
+
+   
   }
 
   visualiser(item){

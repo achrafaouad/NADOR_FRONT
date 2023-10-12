@@ -25,23 +25,8 @@ export class CardComponentComponent {
   lots: any;
   selectedLot: any;
 
-  marche : any; /*Marche = {
-    etape_etude: null,
-    status_etude: null,
-    delegation: null,
-    status_marche: null,
-    numero_marche: null,
-    objet: null,
-    titulaire: null,
-    montant: null,
-    os_commencement: null,
-    dateOverturePlit: null,
-    n_appel_offre: null,
-    delai: null,
-    estimationao: null,
-    montantengage: null,
-    prixes: [],
-  };*/
+  marche : any; 
+  
 
   situation: any = [
     {
@@ -97,7 +82,7 @@ export class CardComponentComponent {
 
   changeProjets(event) {
     const id = event.target.value;
-    this.selectedProjet = this.projets.find((c) => c.id === Number(id)) || null;
+    this.selectedProjet = this.projets.find((c) => c.id === Number(id)) || null ;
     this.lots = this.selectedProjet.lots;
     console.log(this.selectedProjet);
     this.selectedLot = null;
@@ -125,23 +110,16 @@ export class CardComponentComponent {
   }
 
   changeCard() {
-    //    this.service.getSituationGlobal(null,null,null,null).subscribe(
-    //   res=>{
-    //     console.log(res)
-    //     this.situation   =res;
-    //    },
-    //   err=>{
-    //     console.log(err);
-    //   }
-    // )
+
     console.log('1===> ' || this.selectedNiveau);
     console.log('2===> ' || this.selectedProjet);
     console.log('3===>' || this.selectedLot);
+    console.log('4===>' || this.marche);
 
 
 if(this.marche){
   this.service
-  .getSituationGlobalNivAndProjetAndLotAndMarche(1, 5, 6,9)
+  .getSituationGlobalNivAndProjetAndLotAndMarche(this.selectedNiveau.id, this.selectedProjet.id , this.selectedLot.id ,this.marche.id_marche)
   .subscribe(
     (res) => {
       console.log(
@@ -156,7 +134,7 @@ if(this.marche){
   );
 }else if( this.marche == null  && this.selectedLot ){
   this.service
-  .getSituationGlobalNivAndProjetAndLot(1, 5, 6)
+  .getSituationGlobalNivAndProjetAndLot(this.selectedNiveau.id, this.selectedProjet.id, this.selectedLot.id)
   .subscribe(
     (res) => {
       console.log(
@@ -171,7 +149,7 @@ if(this.marche){
   );
 }else if( this.marche == null  && this.selectedLot ==null  && this.selectedProjet ){
   this.service
-  .getSituationGlobalNivAndProjet(1, 5)
+  .getSituationGlobalNivAndProjet(this.selectedNiveau.id, this.selectedProjet.id)
   .subscribe(
     (res) => {
       console.log(
@@ -186,13 +164,14 @@ if(this.marche){
   );
 }else if( this.marche == null  && this.selectedLot ==null  && this.selectedProjet==null && this.selectedNiveau ){
   this.service
-  .getSituationGlobalNiv(1)
+  .getSituationGlobalNiv(this.selectedNiveau.id)
   .subscribe(
     (res) => {
       console.log(
         'SItuation global par niveau '
       );
       console.log(res);
+      console.log("achraf aouad");
       this.situation = res;
     },
     (err) => {
